@@ -3,13 +3,15 @@ package base;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
     public WebDriver driver;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() throws InterruptedException{
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -18,7 +20,7 @@ public class BaseTest {
         Thread.sleep(10000);
     }
 
-    @AfterMethod
+    @AfterClass
     public void tearDown(){
         driver.quit();
     }
