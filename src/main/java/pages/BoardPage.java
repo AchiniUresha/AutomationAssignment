@@ -19,20 +19,19 @@ public class BoardPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    //private By addListField = By.xpath("//div[@data-cy='create-list'] ");
     private By listTitleInputField = By.xpath("//input[@placeholder='Enter list title...']");
     private By addListButton = By.xpath("//button[normalize-space()='Add list']");
     private By createdLists = By.xpath("//input[@data-cy='list-name']");
 
-    String listXpath = "//div[@data-cy='board-detail']//div[contains(@class, 'w-list') and not(.//input[@data-cy='add-list-input'])]";
 
     private By tripleDotButton = By.xpath("//button[@data-cy='list-options']//*[name()='svg']");
     private By listDeleteButton = By.xpath("//div[@data-cy='delete-list']");
 
     public void addList(String listName){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         WebElement listInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Enter list title...']")));
         driver.findElement(listTitleInputField).sendKeys(listName);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(addListButton));
         driver.findElement(addListButton).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(createdLists));
 

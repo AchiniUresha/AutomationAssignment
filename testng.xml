@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Selenium Automation Suite" verbose="1" parallel="false">
+    <test name="Board and List Functionality Tests">
+        <classes>
+            <class name="tests.CreateBoard" />
+            <class name="tests.CreateDeleteListTest" />
+        </classes>
+    </test>
+</suite>
