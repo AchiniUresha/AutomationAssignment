@@ -17,19 +17,28 @@ public class HomePage {
     private By boardItems = By.xpath("//div[@class='board']");
     private String boardByNameXPath = "//div[contains(@class,'board')]//span[text()='%s']";
 
+    /**
+     * Constructor to initialize the HomePage with a WebDriver.
+     *
+     * @param driver the WebDriver instance passed from the test
+     */
     public HomePage(WebDriver driver) {
         this.driver = driver;
    }
 
-    // Click on the 'Create New Board' section
+    /**
+     * Clicks on the "Create new board" tile.
+     * Waits until the board title input becomes visible.
+     */
    public void clickCreateNewBoard(){
         driver.findElement(createBoardTitle).click();
+       // Wait up to 20 seconds for the board title input field to appear
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='new-board-input']")));
    }
 
     /**
-     * Enters a board name and hits Enter to create it.
+     * Enters the board name into the input and presses Enter to submit it.
      *
      * @param boardName the name of the board to be created
      */
@@ -38,14 +47,17 @@ public class HomePage {
 
    }
 
-    // Get the board title
+    /**
+     * Returns the title of the currently opened board from the top input box.
+     *
+     * @return the board title as shown in the corner input field
+     */
     public String getBoardTitleOnTopCorner() {
+        // Wait until the board title input becomes visible
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(boardHeader));
+        // Return the current value of the input field (board title)
         return driver.findElement(boardHeader).getAttribute("value");
     }
-
-
-
 
 }
